@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vanta-backend
+    runtime: node
+    repo: https://github.com/yourname/yourrepo  # Render akan mengabaikan ini saat create from repo
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false   # isi di dashboard
+      - key: CORS_ORIGINS
+        # origin FE utama + boleh tambahkan domain backend sendiri untuk debug
+        value: "https://vantaprotocol.app,https://vanta-backend.onrender.com"
+      - key: NODE_ENV
+        value: "production"
+    autoDeploy: true
+    plan: free
+    healthCheckPath: /health
+    numInstances: 1
+    region: oregon
